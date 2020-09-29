@@ -28,11 +28,13 @@ def snmp():
 	parser.add_argument("-l","--level",help="v3 level")
 	parser.add_argument("-m","--max_repetitions",help="max repetitions",type=int)
 	parser.add_argument("-n","--non_repeaters",help="count of non-repeaters",type=int)
+	parser.add_argument("-o","--oid",help="oid to get")
+
 	try:
 		args = parser.parse_args()
 	except Exception:
 		print "error in arguments passed"
-	vars = netsnmp.VarList(netsnmp.Varbind('.1'))
+	vars = netsnmp.VarList(netsnmp.Varbind(args.oid))
 	snmpgetbulk=[]
 	if args.version==2 or args.version==1:
 		session=netsnmp.Session(Version=args.version, DestHost=args.ip,Community=args.community)
