@@ -36,14 +36,13 @@ def snmp():
 		print "error in arguments passed"
 	vars = netsnmp.VarList(netsnmp.Varbind(args.oid))
 	snmpgetbulk=[]
-	if args.version==2 or args.version==1:
+	if args.version==2:
 		session=netsnmp.Session(Version=args.version, DestHost=args.ip,Community=args.community)
 		session.getbulk(args.non_repeaters,args.max_repetitions,vars)
 		for i in vars:
 			print('{}.{} : {}'.format(i.tag, i.iid, i.val))	
 			snmpgetbulk.append('{}.{} : {}'.format(i.tag, i.iid, i.val))
-		
-	if args.version==3:
+    	if args.version==3:
 		session=netsnmp.Session(Version=args.version, DestHost=args.ip, SecLevel=args.level,AuthProto=args.authprotocol, AuthPass=args.authpassword, PrivProto=args.privprotocol,PrivPass=args.privpassword, SecName=args.v3_uname)
 		session.getbulk(args.non_repeaters,args.max_repetitions,vars)
 		for i in vars:
