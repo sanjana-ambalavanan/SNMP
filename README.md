@@ -1,2 +1,2 @@
-# WASE_2020
+# SNMP test scripts
 project 
