@@ -1,9 +1,10 @@
 import netsnmp
 import sys
 import argparse
-
+import os 
 
 def main():
+    os.system("/etc/init.d/snmpd start")
 	snmpget = snmp()
 	status=True
 	if None in snmpget or 'error' in snmpget or 'timeout' in snmpget or not snmpget:
