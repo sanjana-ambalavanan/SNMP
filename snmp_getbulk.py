@@ -1,10 +1,8 @@
 import netsnmp
 import sys
 import argparse
-import os
 
 def main():
-        os.system("/etc/init.d/snmpd start")
 	snmpgetbulk= snmp()
 	status=True
 	if [i for i in snmpgetbulk if "None" in i] or not snmpgetbulk:

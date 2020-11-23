@@ -1,10 +1,8 @@
 import netsnmp
 import sys
 import argparse
-import os
 
 def main():
-        os.system("/etc/init.d/snmpd start")
 	snmpwalk = snmp()
 	status=True
 	if 'error' in snmpwalk or 'timeout' in snmpwalk or snmpwalk == []:
